@@ -1,0 +1,30 @@
+{
+	"employees": [
+		{ "id": 1, "name": "Holly" },
+		{ "id": 2, "name": "Bart" },
+		{ "id": 3, "name": "Jim" },
+		{ "id": 4, "name": "Carol" },
+		{ "id": 5, "name": "Janit" },
+		{ "id": 6, "name": "Charley" },
+		{ "id": 7, "name": "Cheryl" }
+	],
+	"locations": [
+		{ "id": 1, "name": "East Chicago", "address": "220 Main Street" },
+		{ "id": 2, "name": "North Chicago", "address": "1 Washington Street" },
+		{ "id": 3, "name": "West Chicago", "address": "51564 W Hollywood Blvd" }
+	],
+	"candies": [
+		{ "id": 1, "candyName": "M&Ms", "typeId": 1 },
+		{ "id": 1, "candyName": "Laffy Taffy", "typeId": 2 },
+		{ "id": 1, "candyName": "Wherthers", "typeId": 3 },
+		{ "id": 1, "candyName": "LifeSavers", "typeId": 4 },
+		{ "id": 1, "candyName": "Jolly Rancher Chews", "typeId": 2 },
+		{ "id": 1, "candyName": "Peppermints", "typeId": 3 }
+	],
+	"types": [
+		{ "id": 1, "type": "Chocolate" },
+		{ "id": 2, "type": "Taffy" },
+		{ "id": 3, "type": "Hard Candy" },
+		{ "id": 4, "type": "Sugar Free" }
+	]
+}
