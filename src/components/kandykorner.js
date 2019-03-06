@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import EmployeeList from "./Employees/employees"
+import CandyList from "./Candy/candies"
+import StoreList from "./Store/stores"
 
 class KandyKorner extends Component {
   storeArray = [
@@ -35,7 +38,7 @@ class KandyKorner extends Component {
       <article className="KandyKorner">
         <StoreList stores={this.state.stores}/>
         <EmployeeList employees={this.state.employees}/>
-        <CandyList candy={this.state.candies this.state.candyTypes}/>
+        <CandyList candy={this.state.candies} candyTypes={this.state.candyTypes}/>
       </article>
     );
   }
