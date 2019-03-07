@@ -8,7 +8,18 @@ class ApplicationViews extends Component {
 	state = {
 		employees: [],
 		locations: [],
-		candy: [],
+		candy: []
+	};
+	deleteCandy = (id) => {
+		return fetch(`http//localhost:5002/candies/${id}`, {
+			method: 'DELETE'
+		})
+			.then((e) => e.json())
+			.then(() => {
+				fetch(`http://localhost:5002/candies?_expand=type`)
+					.then((e) => e.json())
+					.then((candies) => this.setState({ candy: candies }));
+			});
 	};
 	componentDidMount() {
 		const newState = {};
@@ -43,7 +54,7 @@ class ApplicationViews extends Component {
 				<Route
 					path="/candy"
 					render={(props) => {
-						return <CandyList candy={this.state.candy} />;
+						return <CandyList candy={this.state.candy} deleteCandy={this.deleteCandy} />;
 					}}
 				/>
 				<Route
