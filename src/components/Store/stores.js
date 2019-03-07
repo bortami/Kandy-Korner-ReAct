@@ -6,7 +6,11 @@ export default class StoreList extends Component {
 			<article>
 				<h1>Store List</h1>
 				{this.props.locations.map((singleStore) => {
-					return <p key={singleStore.id}>{singleStore.name} Address: {singleStore.address}</p>;
+					return (
+						<p key={singleStore.id}>
+							{singleStore.name} Address: {singleStore.address}
+						</p>
+					);
 				})}
 			</article>
 		);

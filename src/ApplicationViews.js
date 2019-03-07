@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import CandyList from './components/Candy/candies';
 import LocationList from './components/Store/stores';
 import EmployeeList from './components/Employees/employees';
+import EmployeeManager from './modules/EmployeesManager';
+import LocationManager from './modules/LocationsManager';
+import CandyManager from './modules/CandyManager';
 
 class ApplicationViews extends Component {
 	state = {
@@ -11,34 +14,20 @@ class ApplicationViews extends Component {
 		candy: []
 	};
 	deleteCandy = (id) => {
-		return fetch(`http//localhost:5002/candies/${id}`, {
-			method: 'DELETE'
-		})
-			.then((e) => e.json())
-			.then(() => {
-				fetch(`http://localhost:5002/candies?_expand=type`)
-					.then((e) => e.json())
-					.then((candies) => this.setState({ candy: candies }));
-			});
+		CandyManager.deleteAndListCandy(id).then((candies) => this.setState({ candy: candies }));
 	};
 	componentDidMount() {
 		const newState = {};
-		fetch('http://localhost:5002/employees')
-			.then((employees) => employees.json())
-			.then((parsedEmployees) => {
-				newState.employees = parsedEmployees;
-				return fetch('http://localhost:5002/locations');
-			})
-			.then((locations) => locations.json())
-			.then((parsedLocations) => {
+		EmployeeManager.allEmployees().then((parsedEmployees) => {
+			newState.employees = parsedEmployees;
+			LocationManager.allLocations().then((parsedLocations) => {
 				newState.locations = parsedLocations;
-				return fetch('http://localhost:5002/candies?_expand=type');
-			})
-			.then((r) => r.json())
-			.then((parsedCandy) => {
-				newState.candy = parsedCandy;
-			})
-			.then(() => this.setState(newState));
+				CandyManager.allCandywithType().then((parsedCandy) => {
+					newState.candy = parsedCandy;
+					this.setState(newState);
+				});
+			});
+		});
 	}
 
 	render() {
