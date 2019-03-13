@@ -1,6 +1,8 @@
 import { Route } from 'react-router-dom';
 import React, { Component } from 'react';
 import CandyList from './components/Candy/candies';
+import CandyDetail from './components/Candy/CandyDetail';
+import CandyForm from './components/Candy/CandyForm';
 import LocationList from './components/Store/stores';
 import EmployeeList from './components/Employees/employees';
 import api from './modules/APIManager';
@@ -14,7 +16,8 @@ class ApplicationViews extends Component {
 	state = {
 		employees: [],
 		locations: [],
-		candy: []
+		candy: [],
+		types: []
 	};
 	deleteCandy = (id) => {
 		CandyManager.deleteAndListCandy(id).then((candies) => this.setState({ candy: candies }));
@@ -46,7 +49,10 @@ class ApplicationViews extends Component {
 				newState.locations = parsedLocations;
 				CandyManager.allCandywithType().then((parsedCandy) => {
 					newState.candy = parsedCandy;
-					this.setState(newState);
+					api.all('types').then((types) => {
+						newState.types = types;
+						this.setState(newState);
+					});
 				});
 			});
 		});
@@ -75,16 +81,27 @@ class ApplicationViews extends Component {
 					}}
 				/>
 				<Route
-					path="/locations/new"
+					path="/new"
 					render={(props) => {
 						return <LocationForm {...props} addLocation={this.addLocation} />;
 					}}
 				/>
 				<Route
+					exact
 					path="/candy"
 					render={(props) => {
-						return <CandyList candy={this.state.candy} deleteCandy={this.deleteCandy} />;
+						return <CandyList {...props} candy={this.state.candy} deleteCandy={this.deleteCandy} />;
 					}}
+				/>
+				<Route
+					path="/candy/:candyId(\d+)"
+					render={(props) => (
+						<CandyDetail {...props} deleteCandy={this.deleteCandy} candy={this.state.candy} />
+					)}
+				/>
+				<Route
+					path="/candy/new"
+					render={(props) => <CandyForm {...props} deleteCandy={this.deleteCandy} types={this.state.types} />}
 				/>
 				<Route
 					exact

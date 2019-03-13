@@ -27,6 +27,11 @@
     {
       "id": 7,
       "name": "Cheryl"
+    },
+    {
+      "name": "Jesus",
+      "phoneNumber": "1",
+      "id": 8
     }
   ],
   "locations": [
@@ -44,6 +49,15 @@
       "id": 3,
       "name": "West Chicago",
       "address": "51564 W Hollywood Blvd"
+    },
+    {
+      "name": "Ruby's",
+      "id": 4,
+      "address": "555 North Street"
+    },
+    {
+      "name": "Brian's Hub Spot",
+      "id": 5
     }
   ],
   "candies": [

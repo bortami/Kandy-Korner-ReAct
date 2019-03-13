@@ -14,6 +14,7 @@ export default class EmployeeForm extends Component {
 		e.preventDefault();
 		const employee = {
 			name: this.state.name,
+			phoneNumber: this.state.phoneNumber
 		};
 		this.props.addEmployee(employee).then(() => this.props.history.push('/employees'));
 	};
@@ -33,7 +34,17 @@ export default class EmployeeForm extends Component {
 							placeholder="Employee name"
 						/>
 					</div>
-					
+					<div className="form-group">
+						<label htmlFor="phoneNumber">Employee Phone Number</label>
+						<input
+							type="phone"
+							required
+							className="form-control"
+							onChange={this.handleFieldChange}
+							id="phoneNumber"
+							placeholder="Employee phone number"
+						/>
+					</div>
 					<button type="submit" onClick={this.constructNewEmployee} className="btn btn-primary">Submit</button>
 				</form>
 			</React.Fragment>

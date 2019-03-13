@@ -11,6 +11,7 @@ export default class EmployeeDetail extends Component {
 						
 
 						<h6 className="card-title">{employee.name}</h6>
+						<p>Phone Number : {employee.phoneNumber}</p>
 						
 						<a
 							href="#"
