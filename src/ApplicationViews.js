@@ -40,7 +40,10 @@ class ApplicationViews extends Component {
 			.post(employee, 'employees')
 			.then(() => api.all('employees'))
 			.then((employees) => this.setState({ employees: employees }));
-
+	addCandy = (candy) =>
+		CandyManager.addCandy(candy)
+			.then(() => CandyManager.allCandywithType())
+			.then((candy) => this.setState({ candy: candy }));
 	componentDidMount() {
 		const newState = {};
 		api.all('employees').then((parsedEmployees) => {
@@ -101,7 +104,7 @@ class ApplicationViews extends Component {
 				/>
 				<Route
 					path="/candy/new"
-					render={(props) => <CandyForm {...props} deleteCandy={this.deleteCandy} types={this.state.types} />}
+					render={(props) => <CandyForm {...props} addCandy={this.addCandy} types={this.state.types} />}
 				/>
 				<Route
 					exact

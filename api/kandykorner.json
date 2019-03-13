@@ -85,6 +85,11 @@
       "id": 1,
       "candyName": "Peppermints",
       "typeId": 3
+    },
+    {
+      "candyName": "Snickers",
+      "typeId": 1,
+      "id": 2
     }
   ],
   "types": [
